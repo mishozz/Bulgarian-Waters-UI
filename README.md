@@ -37,3 +37,7 @@ make start
 ```
 
 The app should now be available at http://localhost:3000/.
+
+## 🖼️ Example map
+
+![Bulgarian Waters Demo](docs/images/example-map.png)
