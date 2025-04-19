@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import { ZoomControl } from 'react-leaflet';
 import L from 'leaflet';
 import { useState } from 'react';
+import { CircularProgress, Box } from '@mui/material';
 import './App.css';
 
 const client = new ApolloClient({
@@ -46,34 +47,67 @@ const icons = {
 };
 
 function MapView({ filters }) {
-  const { loading, error, data } = useQuery(WATER_FEATURES_QUERY, { variables: filters });
+  const { loading, error, data } = useQuery(WATER_FEATURES_QUERY, {
+    variables: filters,
+  });
 
-  if (loading) return <div className="loader">Loading map...</div>;
+  if (loading) return (
+    <Box
+      sx={{
+        height: '100vh',
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        zIndex: 1000,
+        backgroundColor: 'rgba(255,255,255,0.7)', // optional white overlay
+      }}
+    >
+      <CircularProgress />
+    </Box>
+  );
+
   if (error) return <p>Error: {error.message}</p>;
+  if (!data || !data.waterFeatures) return null;
 
   return (
-    <MapContainer center={[42.7339, 25.4858]} zoom={7} zoomControl={false} style={{ height: '100vh', width: '100%' }}>
+    <MapContainer
+      center={[42.7339, 25.4858]}
+      zoom={7}
+      zoomControl={false}
+      style={{ height: '100vh', width: '100%' }}
+    >
       <TileLayer
-        attribution='&copy; OpenStreetMap contributors'
+        attribution="&copy; OpenStreetMap contributors"
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {data.waterFeatures.map(feature => (
-        feature.location && (
-          <Marker
-            key={feature.id}
-            position={[feature.location.latitude, feature.location.longitude]}
-            icon={icons[feature.type] || icons.LAKE}
-          >
-            <Popup>
-              <strong>{feature.name}</strong><br />
-              Type: {feature.type}<br />
-              Area: {feature.surfaceArea ?? 'N/A'} km²<br />
-              Capacity: {feature.capacity ?? 'N/A'} m³<br />
-              <a href={feature.wikidataUrl} target="_blank" rel="noopener noreferrer">Wikidata</a>
-            </Popup>
-          </Marker>
-        )
-      ))}
+      {data.waterFeatures.map(
+        (feature) =>
+          feature.location && (
+            <Marker
+              key={feature.id}
+              position={[feature.location.latitude, feature.location.longitude]}
+              icon={icons[feature.type] || icons.LAKE}
+            >
+              <Popup>
+                <strong>{feature.name}</strong>
+                <br />
+                Type: {feature.type}
+                <br />
+                Area: {feature.surfaceArea ?? 'N/A'} km²
+                <br />
+                Capacity: {feature.capacity ?? 'N/A'} m³
+                <br />
+                <a href={feature.wikidataUrl} target="_blank" rel="noopener noreferrer">
+                  Wikidata
+                </a>
+              </Popup>
+            </Marker>
+          )
+      )}
       <ZoomControl position="bottomright" />
     </MapContainer>
   );
