@@ -1,0 +1,74 @@
+body, html, #root {
+  height: 100%;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.app-header {
+  background-color: #0077b6;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  z-index: 1000;
+  position: relative;
+}
+
+.app-wrapper {
+  position: relative;
+}
+
+.filters-panel {
+  position: absolute;
+  top: 70px;
+  left: 20px;
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+  width: 220px;
+  font-size: 0.9rem;
+}
+
+.filters-panel h3 {
+  margin-top: 0;
+}
+
+.filters-panel label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.filters-panel input, .filters-panel select, .filters-panel button {
+  width: 100%;
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+  padding: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filters-panel button {
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.filters-panel button:hover {
+  background-color: #023e8a;
+}
+
+.loader {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #0077b6;
+}
+
+.leaflet-bottom.leaflet-right {
+  bottom: 50px !important; /* Adjust this value to move it further up */
+}
