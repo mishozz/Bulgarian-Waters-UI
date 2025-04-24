@@ -15,17 +15,8 @@ This project is a React-based interactive dashboard for exploring water features
 
 ---
 
-## 🧠 Tech Stack
 
-- **React**
-- **Apollo Client** (GraphQL)
-- **Leaflet.js** (Map)
-- **Material UI** (Loader, UI polish)
-- **Wikidata + SPARQL** (via GraphQL backend)
-
----
-
-## 🚀 Getting Started
+## Local Development
 
 ### 1. Clone the repository
 
