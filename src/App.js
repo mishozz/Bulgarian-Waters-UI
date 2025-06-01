@@ -150,15 +150,28 @@ function FiltersPanel({ onUpdateFilters }) {
   );
 }
 
+function MapLegend() {
+    return (
+        <div className="map-legend">
+            <h4>Legend</h4>
+            <div><span className="legend-dot river"></span>River</div>
+            <div><span className="legend-dot lake"></span>Lake</div>
+            <div><span className="legend-dot reservoir"></span>Reservoir</div>
+            <div><span className="legend-dot dam"></span>Dam</div>
+        </div>
+    );
+}
+
 export default function App() {
-  const [filters, setFilters] = useState({});
-  return (
-    <ApolloProvider client={client}>
-      <div className="app-wrapper">
-        <header className="app-header">Bulgarian Waters</header>
-        <FiltersPanel onUpdateFilters={setFilters} />
-        <MapView filters={filters} />
-      </div>
-    </ApolloProvider>
-  );
+    const [filters, setFilters] = useState({});
+    return (
+        <ApolloProvider client={client}>
+            <div className="app-wrapper">
+                <header className="app-header">Bulgarian Waters</header>
+                <FiltersPanel onUpdateFilters={setFilters} />
+                <MapView filters={filters} />
+                <MapLegend />
+            </div>
+        </ApolloProvider>
+    );
 }
