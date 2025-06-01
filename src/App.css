@@ -72,3 +72,47 @@ body, html, #root {
 .leaflet-bottom.leaflet-right {
   bottom: 50px !important; /* Adjust this value to move it further up */
 }
+
+.map-legend {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  font-size: 18px;
+  z-index: 1000;
+  width: 220px;
+}
+
+.map-legend h4 {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.legend-dot.river {
+  background-color: #6993FDff;
+}
+
+.legend-dot.lake {
+  background-color: #FDF569ff;
+}
+
+.legend-dot.reservoir {
+  background-color: #00E74Cff;
+}
+
+.legend-dot.dam {
+  background-color: #FD7567ff;
+}
